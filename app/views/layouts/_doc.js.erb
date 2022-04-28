@@ -1,0 +1,1 @@
+document.getElementById('show-doctors').innerHTML = '<h3> <% @doctors_by_category.each do |n| %> <%= n.user.phone_number %> <%= n.user.first_name %> <%= n.user.last_name %> <div data-controller="makeAppointment" data-makeAppointment-my-value="<%=n.id%>"  data-action="click->makeAppointment#greet"> <button>appointment with a doctor</button> </div> <br> <% end %> </h3>'

@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   resources :patients
   resources :doctors
   resources :appointments
+  resources :categories
 
   root to: 'home#index'
 
   get '/patient/profile', to: "patients#profile"
   get '/doctor/profile',to:"doctors#profile"
+  get '/doctors',to: "categories#doctors_by_category"
 end
