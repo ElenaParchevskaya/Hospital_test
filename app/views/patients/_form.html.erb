@@ -1,0 +1,4 @@
+<%= form_with(url: appointment) do |f| %>
+  <%= f.select :doctor_id, Doctor.all.collect { |p| [ p.category.name, p.id ] }, { selected: params[:id] } %>
+  <%=f.submit "Appointment with a doctor" %>
+<% end %>

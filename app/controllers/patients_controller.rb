@@ -1,20 +1,18 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: %i[  profile]
 
-  def create
-    @patient = Patient.new(user_id: current_user)
-  end
+  def create; end
 
   def profile
-    unless @patient.patient?
-      redirect_to root_path
-    end
+    @appointment = Appointment.new
+    authorize! :read, @patient
   end
 
   def set_patient
-    @patient = User.find(current_user.id)
+    @patient = Patient.find_by(user_id:current_user.id)
   end
 
-  def patient_params; end
-
+  def appointment_params
+    params.require(:appointment).permit(:doctor_id)
+  end
 end
