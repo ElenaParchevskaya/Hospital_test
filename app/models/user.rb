@@ -7,7 +7,12 @@ class User < ApplicationRecord
   has_many :patient
   has_many :doctor
   enum role: [:patient, :doctor, :admin]
-  
+
+  def get_full_name(user_id)
+    user = User.find(user_id)
+    "#{user.first_name} #{user.last_name}"
+  end
+
   after_initialize :set_default_role, if: :new_record?
 
   def set_default_role
