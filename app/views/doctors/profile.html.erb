@@ -1,0 +1,7 @@
+<h>Doctor</h>
+<%= current_user.phone_number %>
+TEST
+<h3>an appointment with this doctor: </h3>
+<% @appointments.each do |n| %>
+  <%=get_phone_number(n.patient.user_id)%><br>
+<% end %>
