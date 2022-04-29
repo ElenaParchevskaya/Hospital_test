@@ -1,9 +1,9 @@
 <% if current_user %>
   <%= button_to "Logout", destroy_user_session_path, method: :delete %>
-  <% if can? :read, @patient %>
+  <% if can? :index, @patient %>
   <%= link_to "profile pat", patient_profile_path %>
 <%end %>
-  <% if can? :read, @doctor %>
+  <% if can? :index, @doctor %>
   <%= link_to "profile doctor", doctor_profile_path %>
     <%end %>
 <% else %>

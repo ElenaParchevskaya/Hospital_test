@@ -1,5 +1,5 @@
 <% if current_user %>
-  <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+  <%= button_to "Logout", destroy_user_session_path, method: :delete, html: { data: { turbo: false} } %>
   <% if can? :read, @patient %>
     <%= link_to "profile pat", patient_profile_path %>
   <%end %>

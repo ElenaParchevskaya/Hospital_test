@@ -1,8 +1,4 @@
 class Appointment < ApplicationRecord
-  belongs_to :doctor
-  belongs_to :patient
-
-  def get_sh
-
-  end
+  belongs_to :doctor, dependent: :destroy
+  belongs_to :patient, dependent: :destroy
 end
