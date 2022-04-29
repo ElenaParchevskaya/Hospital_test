@@ -9,7 +9,7 @@ class User < ApplicationRecord
   enum role: [:patient, :doctor, :admin]
 
   def get_recommendation(doctor_id,patient_id)
-    rec = Recommendation.find_by(doctor_id:doctor_id,patient_id:patient_id)
+
   end
 
   after_initialize :set_default_role, if: :new_record?

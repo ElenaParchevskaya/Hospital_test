@@ -4,14 +4,11 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user ||= User.new
     if user.patient?
-      can :read, Patient do |patient|
-        patient.user == user
-      end
-      
-      can :update, Patient do |patient|
-        patient.user == user
-      end
+      can :read, Patient
+      can :index, Patient
+      can :update,Patient
     end
 
     if user.doctor?
