@@ -5,6 +5,7 @@ class PatientsController < ApplicationController
 
   def profile
     authorize! :read, @patient
+    @appointments = User.joins(:doctor).where(users:{doctor_id:@patient.doctor_ids})
   end
 
   def set_patient
