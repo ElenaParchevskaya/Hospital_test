@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  before_action :set_patient, only: %i[  profile]
+  before_action :set_patient, only: %i[profile]
 
   def create; end
 
