@@ -8,6 +8,7 @@ class PatientsController < ApplicationController
   end
 
   def set_patient
-    @patient = Patient.find_by(user_id:current_user.id)
+    @user = current_user
+    @patient = Patient.joins(:user).where(patients:{user_id:@user.id})[0]
   end
 end

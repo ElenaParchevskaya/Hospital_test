@@ -1,18 +1,13 @@
 class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[profile]
 
-  def index; end
-
   def profile
-    @appointments = @doctor.appointments
+    @appointments = User.joins(:patient).where(users:{patients:@doctor.patients.ids})
     authorize! :read, @doctor
   end
 
-  def create
-    @doctor = Doctor.new(:current_user)
-  end
-
   def set_doctor
-    @doctor = Doctor.find_by(user_id: current_user.id)
+    @user = current_user
+    @doctor = Doctor.joins(:user).where(doctors:{user_id:@user.id})[0]
   end
 end

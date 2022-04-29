@@ -4,13 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :patient
-  has_many :doctor
+  has_many :patient, dependent: :destroy
+  has_many :doctor, dependent: :destroy
   enum role: [:patient, :doctor, :admin]
 
   def get_full_name(user_id)
-    user = User.find(user_id)
-    "#{user.first_name} #{user.last_name}"
+
   end
 
   after_initialize :set_default_role, if: :new_record?
