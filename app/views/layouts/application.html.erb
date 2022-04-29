@@ -12,14 +12,7 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
-  <% if current_user %>
-  <%= button_to "Logout", destroy_user_session_path, method: :delete %>
-  <%= link_to "profile pat", patient_profile_path %>
-
-  <%= link_to "profile doctor", doctor_profile_path %>
-<%else %>
-  <%=link_to "LOGIN", new_user_session_path %>
-  <%end %>
+<%=render 'layouts/navbar' %>
 
 <body>
   <p class="notice"><%= notice %></p>

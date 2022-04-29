@@ -2,8 +2,8 @@ class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[profile]
 
   def profile
-    @appointments = User.joins(:patient).where(users:{patients:@doctor.patients.ids})
     authorize! :read, @doctor
+    @appointments = User.joins(:patient).where(users:{patients:@doctor.patient_ids})
   end
 
   def set_doctor

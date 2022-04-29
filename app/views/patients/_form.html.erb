@@ -2,7 +2,7 @@
   <%= form_with do |f| %>
   <%=f.collection_select :id,Category.all,:id,:name,{prompt:'choice of doctor category'} %>
 <% end %>
-</div>
-<div data-controller="doctorByCategory" data-action="click->doctorByCategory#clear">
+<div data-action="click->doctorByCategory#clear">
   <button>delete</button>
 </div>
+</div> 

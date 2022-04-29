@@ -13,5 +13,5 @@ Rails.application.routes.draw do
 
   get '/patient/profile', to: "patients#profile"
   get '/doctor/profile',to:"doctors#profile"
-  get '/doctors',to: "categories#doctors_by_category"
+  post '/appointment/rec',to:"appointments#set_recommendation"
 end

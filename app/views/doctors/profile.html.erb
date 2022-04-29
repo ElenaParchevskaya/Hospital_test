@@ -6,9 +6,9 @@
       <%=n.first_name %>
       <%=n.last_name %>
       <%=n.phone_number%>
-      <div data-controller="writeRecommendation" data-writeRecommendation-my-value="<%=n.patient_id%>" data-writeRecommendation-my-value2="<%=@doctor.id%>"  data-action="click->writeRecommendation#greet">
+      <div data-controller="writeRecommendation" data-writeRecommendation-my-value="<%=n.patient_id%>" data-writeRecommendation-my-value2="<%=@doctor.id%>" >
         <textarea></textarea>
-        <button>Send recommendation</button>
+        <button data-action="click->writeRecommendation#greet">Send recommendation</button>
       </div>
   <% end %>
 <% end %>
