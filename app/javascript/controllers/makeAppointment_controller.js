@@ -1,3 +1,4 @@
+// src/controllers/makeAppointment_controller.js
 import {Controller} from "@hotwired/stimulus"
 
 export default class extends Controller {
@@ -11,5 +12,6 @@ export default class extends Controller {
         });
     }
     clear(event){
+
     }
 }
