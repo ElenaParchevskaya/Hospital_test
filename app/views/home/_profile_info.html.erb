@@ -1,0 +1,131 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card-h card-h-profile">
+        <div style="background-image: url(https://www.bootdey.com/app/webroot/img/Content/flores-amarillas-wallpaper.jpeg);" class="card-header"></div>
+        <div class="card-body text-center">
+          <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="card-h-profile-img">
+          <% if can? :read, @patient %>
+            <h3 class="mb-3"><%= @user.first_name %> <%= @user.last_name %></h3>
+            <p class="mb-4">Patient</p>
+          <% end %>
+          <% if can? :read, @doctor %>
+            <h3 class="mb-3"><%= @user.first_name %> <%= @user.last_name %></h3>
+            <p class="mb-4">Doctor</p>
+            <p class="mb-4"><%= @doctor.category.name %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-h">
+        <div class="card-body">
+          <div class="media">
+            <span style="background-image: url(https://www.bootdey.com/app/webroot/img/Content/avatar/avatar6.png)" class="avatar avatar-xl mr-3"></span>
+            <div class="media-body">
+              <h4>Dima M</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="card-h">
+        <div class="card-h-header">
+          <h3 class="card-title">My Profile</h3>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-auto d-flex align-items-center">
+              <span style="background-image: url(https://bootdey.com/img/Content/avatar/avatar6.png)" class="avatar avatar-lg"></span>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input placeholder="First name" value="<%= @user.first_name %>" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input placeholder="Last name" value="<%= @user.last_name %>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input placeholder="you@domain.com" value="<%= @user.email %>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone number</label>
+            <input type="" value="<%= @user.phone_number %>" class="form-control">
+          </div>
+        </div>
+        <div class="card-footer text-right">
+          <button class="btn btn-success">Save</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-8">
+      <% if can? :read, @doctor %>
+        <% if @appointments %>
+          <% @appointments.each do |n| %>
+            <div id="<%= n.patient_id %>">
+              <div class="card green">
+                <div class="additional">
+                  <div class="user-card">
+                    <div class="points center">
+                      Patient
+                    </div>
+                    <img src="https://www.bootdey.com/app/webroot/img/Content/avatar/avatar5.png" class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4">
+                  </div>
+                  <div class="more-info">
+                    <h1><%= n.first_name %>  <%= n.last_name %></h1>
+                    <div class="coords">
+                      <span>Phone Number</span>
+                      <span><%= n.phone_number %></span>
+                    </div>
+                    <div class="coords">
+                      <span>Email:</span>
+                      <span><%= n.email %></span>
+                      <div data-controller="writeRecommendation" data-writeRecommendation-my-value="<%= n.patient_id %>" data-writeRecommendation-my-value2="<%= @doctor.id %>">
+                        <textarea cols="26" rows="2"></textarea>
+                        <center>
+                          <button class="send-rec " data-action="click->writeRecommendation#greet">Send recommendation</button>
+                        </center>
+                      </div>
+                    </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% if can? :read, @patient %>
+        <%=link_to 'Главная','/' %>
+        <% if can? :index, @patient %>
+          <%= render 'form' %>
+        <% end %>
+        <div id="show-doctors"></div>
+        your doctors
+        <br>
+        <div id="patient-appointments">
+          <% if @appointments %>
+            <% @appointments.each do |n| %>
+              <div id="<%= n.doctor_id %>">
+                <%= n.first_name %>
+                <%= n.last_name %>
+                <%= n.phone_number %>
+                <%=(n.get_recommendation(n.doctor_id,@patient.id))%>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+        <div id="added-appointments"></div>
+      <% end %>
+      </div>
+      </div>
+      </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+
+    </div>
+  </div>
+</div>
+
+
+</div>
