@@ -1,1 +1,4 @@
-$('#show-doctors #<%=@doctor_id%> #errors').text('<%=@success_message %>') 
+$('#show-doctors #<%=@doctor_id%> #messages').text('<%=@messages %>')
+<%if @messages!='you are registered' %>
+$('#added-appointments').text('<%if @appointment%><%=@appointment&.doctor.user.phone_number %><%end %>')
+<% end%>

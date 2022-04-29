@@ -1,11 +1,16 @@
 <h>Doctor</h>
-<%= current_user.phone_number %>
-TEST
 <h3>an appointment with this doctor: </h3>
 <% if @appointments %>
   <% @appointments.each do |n| %>
-    <%= get_phone_number(n.patient.user_id) %><br>
+    <div id="<%=n.patient_id%>">
+      <%=n.first_name %>
+      <%=n.last_name %>
+      <%=n.phone_number%>
+      <div data-controller="writeRecommendation" data-writeRecommendation-my-value="<%=n.patient_id%>" data-writeRecommendation-my-value2="<%=@doctor.id%>"  data-action="click->writeRecommendation#greet">
+        <textarea></textarea>
+        <button>Send recommendation</button>
+      </div>
   <% end %>
 <% end %>
-
+</div>
 <div id="show-doctors"></div>

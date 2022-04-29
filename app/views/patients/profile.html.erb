@@ -2,9 +2,12 @@
   <%= @patient.user_id %>
   <h>Pathient</h>
   <%= current_user.phone_number %>
-  <% if @patient.diagnose %>
-    <%= @patient.diagnose %>
-  <% end %>
   <%= render 'form' %>
 <% end %>
 <div id="show-doctors"></div>
+Your appointments
+<br>
+
+<div id="patient-appointments">
+</div>
+<div id="added-appointments"> </div>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :doctors
   resources :appointments
   resources :categories
+  resources :recommendations
 
   root to: 'home#index'
 
