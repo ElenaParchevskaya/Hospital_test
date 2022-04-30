@@ -7,11 +7,9 @@ ActiveAdmin.register Doctor do
     column "First Name" do |doctor|
       doctor.user.first_name
     end
-
     column "Last Name" do |doctor|
       doctor.user.last_name
     end
-
     column "Email" do |doctor|
       doctor.user.email
     end
@@ -40,22 +38,19 @@ ActiveAdmin.register Doctor do
     end
     f.actions
   end
-
+  
   show do
     panel "Doctor Details" do
       attributes_table_for doctor do
         row "First Name" do |doctor|
           doctor.user.first_name
         end
-
         row "Last Name" do |doctor|
           doctor.user.last_name
         end
-
         row "Patients" do |doctor|
             doctor.patients
           end
-
         row "Category" do |doctor|
           doctor.category
         end

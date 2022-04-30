@@ -15,6 +15,7 @@ ActiveAdmin.register User do
     column :created_at
     actions
   end
+
   filter :phone_number
   filter :email
   filter :current_sign_in_at
@@ -35,7 +36,6 @@ ActiveAdmin.register User do
   end
 
   controller do
-
     after_create do
       user = User.find_by_phone_number(params[:user][:phone_number])
       if params[:user][:role] == "patient"
