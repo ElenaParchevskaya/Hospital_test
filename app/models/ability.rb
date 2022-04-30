@@ -12,13 +12,9 @@ class Ability
     end
 
     if user.doctor?
-      can :read,Doctor do |doctor|
-        doctor.user == user
+      can :read, Doctor
+      can :index, Doctor
+      can :update,Doctor
       end
-
-      can :update, Doctor do |doctor|
-        doctor.user == user
-      end
-    end
   end
 end
