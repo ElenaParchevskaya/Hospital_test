@@ -55,9 +55,7 @@ gem "bootsnap", require: false
 gem 'devise'
 gem 'cancancan'
 gem 'activeadmin'
-gem 'image_processing'
-gem 'shrine'
-gem 'shrine-cloudinary'
+gem 'aws-sdk-s3'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
