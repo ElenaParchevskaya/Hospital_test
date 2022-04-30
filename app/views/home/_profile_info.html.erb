@@ -1,92 +1,100 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4 ">
       <div class="card-h card-h-profile">
-        <div style="background-image: url(https://www.bootdey.com/app/webroot/img/Content/flores-amarillas-wallpaper.jpeg);" class="card-header"></div>
         <div class="card-body text-center">
-          <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="card-h-profile-img">
+          <span style="background-image: url(<%= avatar_for(@user) %>)" class="avatar avatar-xxl mr-7"></span>
+          <% if current_user %>
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-secondary", html: { data: { turbo: false } } %>
+          <% end %>
           <% if can? :read, @patient %>
             <h3 class="mb-3"><%= @user.first_name %> <%= @user.last_name %></h3>
-            <p class="mb-4">Patient</p>
+            <h3 class="mb-4">Patient</h3>
           <% end %>
           <% if can? :read, @doctor %>
             <h3 class="mb-3"><%= @user.first_name %> <%= @user.last_name %></h3>
             <p class="mb-4">Doctor</p>
-            <p class="mb-4"><%= @doctor.category.name %></p>
+            <% if @doctor.category %>
+              <p class="mb-4"><%= @doctor.category.name %></p>
+            <% end %>
           <% end %>
         </div>
+
       </div>
       <div class="card-h">
         <div class="card-body">
-          <div class="media">
-            <span style="background-image: url(https://www.bootdey.com/app/webroot/img/Content/avatar/avatar6.png)" class="avatar avatar-xl mr-3"></span>
-            <div class="media-body">
-              <h4>Dima M</h4>
+          <%= form_with(model: @user, url: registration_path(@user), html: { method: :put },) do |f| %>
+            <span style="background-image: url(<%= avatar_for(@user) %>)" class="avatar avatar-xl mr-3"> <%= f.file_field :avatar, direct_upload: true, style: 'all: none; position: relative;
+padding-left: 100px;' %></span>
+            <%= f.submit "Upload avatar" %>
+          <% end %>
+          <%= form_with(model: @user, url: registration_path(@user), html: { method: :put },) do |f| %>
             </div>
-          </div>
-        </div>
-      </div>
-      <form class="card-h">
-        <div class="card-h-header">
-          <h3 class="card-title">My Profile</h3>
-        </div>
-        <div class="card-body">
-          <div class="row mb-3">
-            <div class="col-auto d-flex align-items-center">
-              <span style="background-image: url(https://bootdey.com/img/Content/avatar/avatar6.png)" class="avatar avatar-lg"></span>
             </div>
-            <div class="col">
-              <div class="form-group">
-                <label class="form-label">First Name</label>
-                <input placeholder="First name" value="<%= @user.first_name %>" class="form-control">
+            <div class="card-h">
+              <div class="card-h-header">
+                <h3 class="card-title">My Profile</h3>
               </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Last Name</label>
-            <input placeholder="Last name" value="<%= @user.last_name %>" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Email</label>
-            <input placeholder="you@domain.com" value="<%= @user.email %>" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Phone number</label>
-            <input type="" value="<%= @user.phone_number %>" class="form-control">
-          </div>
-        </div>
-        <div class="card-footer text-right">
-          <button class="btn btn-success">Save</button>
-        </div>
-      </form>
-    </div>
+              <div class="card-body">
+                <div class="row mb-3">
 
-    <% if can? :read, @doctor %>
-      <div class="col-lg-8">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form-label">First Name</label>
+                      <%= f.text_field :first_name, placeholder: "First name", value: @user.first_name, class: "form-control" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Last Name</label>
+                  <%= f.text_field :last_name, placeholder: "Last name", value: @user.last_name, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email</label>
+                  <%= f.email_field :email, placeholder: "email@examle.com", value: @user.email, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone number</label>
+                  <%= f.telephone_field :phone_number, placeholder: "+38(000-000-000)", value: @user.phone_number, class: "form-control" %>
+                </div>
+              </div>
+              <div class="card-footer text-right">
+                <button class="btn btn-success">Save</button>
+              </div>
+              <%= render "devise/shared/error_messages", resource: @user %>
+          <% end %>
+          </div>
+          </div>
+    <div class="col-lg-8">
+      <% if can? :read, @doctor %>
         <% if @appointments %>
-          <% @appointments.each do |n| %>
-            <div id="<%= n.patient_id %>">
+          <% @appointments.each do |user| %>
+            <div id="<%= user.patient_id %>">
               <div class="card green">
                 <div class="additional">
                   <div class="user-card">
                     <div class="points center">
                       Patient
                     </div>
-                    <img src="https://www.bootdey.com/app/webroot/img/Content/avatar/avatar5.png" class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4">
+                    <img src="<%= avatar_for(user) %>" class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4">
                   </div>
                   <div class="more-info">
-                    <h1><%= n.first_name %>  <%= n.last_name %></h1>
+                    <h1><%= user.first_name %>  <%= user.last_name %></h1>
                     <div class="coords">
                       <span>Phone Number</span>
-                      <span><%= n.phone_number %></span>
+                      <span><%= user.phone_number %></span>
                     </div>
+
                     <div class="coords">
-                      <span>Email:</span>
-                      <span><%= n.email %></span>
-                      <div data-controller="writeRecommendation" data-writeRecommendation-my-value="<%= n.patient_id %>" data-writeRecommendation-my-value2="<%= @doctor.id %>">
-                        <textarea cols="26" rows="2"></textarea>
+                      <% if user.email? %>
+                        <span>Email:</span>
+                        <span><%= user.email %></span>
+                      <% end %>
+                      <div data-controller="writeRecommendation" data-writeRecommendation-my-value="<%= user.patient_id %>" data-writeRecommendation-my-value2="<%= @doctor.id %>">
+                        <textarea name="send_recommendation" cols="26" rows="2"></textarea>
                         <center>
-                          <button class="send-rec " data-action="click->writeRecommendation#greet">Send recommendation</button>
+                          <button class="send-rec" data-action="click->writeRecommendation#greet">Send recommendation
+                          </button>
                         </center>
                       </div>
                     </div>
@@ -97,49 +105,48 @@
           <% end %>
         <% end %>
       <% end %>
-
       <% if can? :read, @patient %>
         <div class="col-lg-8" id="column">
-          <%= link_to ' HOME', '/' %>
+
           <% if can? :index, @patient %>
             <%= render 'form' %>
           <% end %>
           <div id="show-doctors" class="row"></div>
           <% if @appointments %>
-            <% @appointments.each do |n| %>
-              <div class="row" id="<%= n.doctor_id %>">
+            <% @appointments.each do |user| %>
+              <div class="row" id="<%= user.doctor_id %>">
                 <div class="card">
                   <div class="additional">
                     <div class="user-card">
                       <div class="level center">
-                       Doctor
+                        Doctor
                       </div>
                       <div class="points center">
-                        <%= n.doctor[0].category.name %>
+                        <%= user.doctor[0].category.name %>
                       </div>
-                      <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4">
+                      <img src="<%= avatar_for(user) %>" class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4">
                     </div>
                     <div class="more-info">
-                      <h1><%= n.first_name %> <%= n.last_name %></h1>
-                     <div class="coords">
+                      <h1><%= user.first_name %> <%= user.last_name %></h1>
+                      <div class="coords">
                         <span>Phone number</span>
-                        <span><%= n.phone_number %></span>
+                        <span><%= user.phone_number %></span>
                       </div>
-                      <% if !n.get_recommendation(n.doctor_id, @patient.id) %>
+                      <% if !user.get_recommendation(user.doctor_id, @patient.id) %>
                         <div class="coords">
                           <span>Awaiting doctor's recommendation</span>
                         </div>
                         <div class="coords">
                           <span>Status</span>
-                          <span style="color:yellow">Starting</span>
+                          <span style="color:yellow">Session started</span>
                         </div>
                       <% else %>
                         <div class="coords">
                           <span>Status</span>
-                          <span style="color:red">Finish</span>
+                          <span style="color:red">Session ended</span>
                         </div>
                         <div class="coords">
-                          <span>Doctor_s recommendation:<br><%= (n.get_recommendation(n.doctor_id, @patient.id)) %></span>
+                          <span>Recommendations from doctor:<br><%= (user.get_recommendation(user.doctor_id, @patient.id)) %></span>
                         </div>
                       <% end %>
                     </div>
