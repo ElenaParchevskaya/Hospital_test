@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many_attached :files
   has_many :patient, dependent: :destroy
   has_many :doctor, dependent: :destroy
   enum role: [:patient, :doctor, :admin]
