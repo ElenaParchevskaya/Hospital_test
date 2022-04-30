@@ -9,7 +9,9 @@ class User < ApplicationRecord
   enum role: [:patient, :doctor, :admin]
 
   def get_recommendation(doctor_id,patient_id)
-
+    if Recommendation.exists?(doctor_id: doctor_id, patient_id: patient_id)
+      Recommendation.find_by(doctor_id: doctor_id, patient_id: patient_id).recommendation
+    end
   end
 
   after_initialize :set_default_role, if: :new_record?

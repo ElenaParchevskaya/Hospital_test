@@ -10,8 +10,14 @@ module HospitalTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    # Enable the asset pipeline
+    config.assets.enabled = true
 
-    # Configuration for the application, engines, and railties goes here.
+    # Disable application initialize on precompile (heroku faq: fixes database access error on precompile)
+    config.assets.initialize_on_precompile = false
+
+    # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+    config.assets.precompile += %w( active_admin.css active_admin/print.css active_admin.js )
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
