@@ -12,9 +12,7 @@ class HomeController < ApplicationController
     end
   end
 
-  def create
-
-  end
+  def create; end
 
   def set_user
     @user = current_user
