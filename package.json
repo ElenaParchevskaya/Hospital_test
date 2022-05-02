@@ -1,4 +1,19 @@
 {
+  "name": "HospitalTest",
+    "version": "1.0.0",
+    "private": true,
+    "engines": {
+      "node": "18.0.0"
+      "npm": "8.6.0"
+    },
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
+  },
   "dependencies": {
     "@rails/webpacker": "5.4.3",
     "chokidar": "^3.5.3",
@@ -10,14 +25,5 @@
   },
   "devDependencies": {
     "webpack-dev-server": "^3"
-  },
-
-  "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
   }
 }
