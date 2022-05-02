@@ -109,14 +109,14 @@ body{
     position: absolute;
     width: 150px;
     height: 100%;
-    background: linear-gradient(#dE685E, #EE786E);
+    background: linear-gradient(#52c77b, #69f57e);
     transition: width 0.4s;
     overflow: hidden;
     z-index: 2;
  }
 
 .card.green .additional {
-    background: linear-gradient(#92bCa6, #A2CCB6);
+    background: linear-gradient(#ebd66e, #f2b680);
 }
 
 
@@ -262,7 +262,7 @@ body{
 .send-rec  {
     margin: 0 1rem;
     font-size: 1rem!important;
-    background: linear-gradient(#92bCa6, #A2CCB6);
+    background: linear-gradient(#ebd66e, #f2b680);
 }
 
 .one-more {
