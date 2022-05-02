@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "webpack-dev-server": "^3"
-  }
+  },
 
   "scripts": {
     "dev": "react-scripts start",
