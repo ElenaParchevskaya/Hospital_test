@@ -5,7 +5,7 @@ ActiveAdmin.register Patient do
     column "First Name" do |doctor|
       doctor.user.first_name
     end
-    
+
     column "Last Name" do |doctor|
       doctor.user.last_name
     end

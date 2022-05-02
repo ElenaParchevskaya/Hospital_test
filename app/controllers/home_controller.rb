@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   before_action :set_user, only: %i[index]
 
   def index
@@ -11,7 +12,9 @@ class HomeController < ApplicationController
     end
   end
 
-  def create; end
+  def create
+
+  end
 
   def set_user
     @user = current_user

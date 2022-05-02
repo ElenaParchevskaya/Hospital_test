@@ -16,7 +16,7 @@ ActiveAdmin.register Category do
     end
     f.actions
   end
-
+  
   show do
     panel "Category Details" do
       attributes_table_for category do

@@ -10,13 +10,13 @@ class AppointmentsController < ApplicationController
 
     if Doctor.find(@doctor_id).appointments.count < 10 && !found_appointment
 
-      @messages = "You have successfully registered"
+      @messages = "You have successfully created an appointment"
       @appointment = Appointment.create!(patient_id: patient, doctor_id: @doctor_id)
 
     elsif found_appointment
-      @messages = "You are already registered"
+      @messages = "You have already created an appointment"
     else
-      @messages = "Sorry, the doctor has no appointment today"
+      @messages = "I'm sorry, but the doctor is busy"
     end
     respond_to do |format|
       format.js { render partial: 'layouts/messages' }

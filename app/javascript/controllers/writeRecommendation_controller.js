@@ -10,6 +10,6 @@ export default class extends Controller {
                 xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
             }, type: 'POST', data: {patient_id:this.data.get("myValue"),recommendation:value,doctor_id:this.data.get("myValue2")}
         });
-         $(`#${patient_id} `).html('')
+        $(`#${patient_id} `).html('')
     }
 }
