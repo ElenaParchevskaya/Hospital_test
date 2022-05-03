@@ -10,7 +10,6 @@ class DoctorsController < ApplicationController
         @appointments << user
       end
     end
-
   end
 
   def set_doctor
